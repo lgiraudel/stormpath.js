@@ -234,7 +234,9 @@ Request.prototype.getHeadersObject = function getHeadersObject() {
   var all = self.xhr.getAllResponseHeaders().trim().split('\n');
   return all.reduce(function(acc,str){
     var x = str.split(': ');
-    acc[x[0]] = x[1].trim();
+    if (x.length > 1) {
+      acc[x[0]] = x[1].trim();
+    }
     return acc;
   },{});
 };
